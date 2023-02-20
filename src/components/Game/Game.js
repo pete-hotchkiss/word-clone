@@ -4,6 +4,7 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import GuessInput from "../GuessInput";
 import PreviousGuesess from '../PreviousGuesess';
+import Result from "../Result";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 
@@ -15,24 +16,23 @@ const answer = sample(WORDS);
 function Game() {
 
   const [guesses, setGuesses] = React.useState([]);
-  const [gameState, setGameState] = React.useState(true)
+  const [isActive, setIsActive] = React.useState(true)
 
   const handleNewGuess = (guess) => {
     setGuesses([...guesses, guess]);
     
-    console.log("guess no.", guesses.length);
-    
-    if (guesses.length == NUM_OF_GUESSES_ALLOWED - 1) {
-      setGameState(false); 
+    if (guesses.length == NUM_OF_GUESSES_ALLOWED - 1 || guess === answer) {
+      setIsActive(false); 
       return;
     }
   }
 
-  console.info({ answer });
-
   return <>
+      { !isActive &&
+        <Result guesses={guesses} answer={answer}/>
+      } 
       <PreviousGuesess guesses={guesses} answer={answer}/>
-      <GuessInput handleNewGuess={handleNewGuess} gameStillActive={gameState}/>
+      <GuessInput handleNewGuess={handleNewGuess} gameStillActive={isActive}/>
     </>;
 }
 
