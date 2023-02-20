@@ -12,7 +12,7 @@ function Result({totalGuesses, guess, answer, handleRestart}) {
     result = <div className="happy banner">
     <p>
       <strong>Congratulations!</strong> Got it in 
-      <strong> {totalGuesses} guesses</strong>.
+      <strong> {totalGuesses === 1 ? `1 guess` : `${totalGuesses} guesses`}</strong>.
     </p>
     <RestartButton handler={handleRestart}/>
   </div>;
