@@ -19,6 +19,8 @@ function Game() {
   const [isActive, setIsActive] = React.useState(true);
   const [answer, setAnswer] = React.useState(sample(WORDS))
 
+  console.log("answer", answer);
+
   const init = () => {
     setIsActive(true);
     setGuesses([]);  
@@ -37,7 +39,7 @@ function Game() {
 
   return <>
       { !isActive &&
-        <Result guesses={guesses} answer={answer} handleRestart={init}/>
+        <Result totalGuesses={guesses.length} guess={guesses.at(-1)} answer={answer} handleRestart={init}/>
       } 
       <PreviousGuesess guesses={guesses} answer={answer}/>
       <GuessInput handleNewGuess={handleNewGuess} gameStillActive={isActive}/>

@@ -4,15 +4,15 @@ const RestartButton = ({handler}) => {
   return <button onClick={() => handler()}>Restart</button>;
 }
 
-function Result({guesses, answer, handleRestart}) {
+function Result({totalGuesses, guess, answer, handleRestart}) {
 
   let result;
 
-  if (guesses.at(-1) === answer) {
+  if (guess=== answer) {
     result = <div className="happy banner">
     <p>
-      <strong>Congratulations!</strong> Got it in
-      <strong>{guesses.length} guesses</strong>.
+      <strong>Congratulations!</strong> Got it in 
+      <strong> {totalGuesses} guesses</strong>.
     </p>
     <RestartButton handler={handleRestart}/>
   </div>;
