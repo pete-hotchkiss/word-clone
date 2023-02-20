@@ -1,6 +1,6 @@
 import React from "react";
 
-function GuessInput({handleNewGuess}) {
+function GuessInput({handleNewGuess, gameStillActive}) {
 
   const [guess, setGuess] = React.useState('');
 
@@ -14,6 +14,7 @@ function GuessInput({handleNewGuess}) {
         setGuess("");
       }}
     >
+    game ok: {gameStillActive.toString()}
     <label htmlFor="guess-input">Enter guess:</label>
     <input 
       onChange={(e) => {
@@ -22,7 +23,8 @@ function GuessInput({handleNewGuess}) {
       title="Must be exactly 5 characters long and letters only"
       pattern="[A-Z]{5}"
       value={guess}
-      id="guess-input" type="text" />
+      id="guess-input" type="text"
+      disabled={!gameStillActive} />
   </form>;
 }
 

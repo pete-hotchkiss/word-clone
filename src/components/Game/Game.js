@@ -15,21 +15,24 @@ const answer = sample(WORDS);
 function Game() {
 
   const [guesses, setGuesses] = React.useState([]);
+  const [gameState, setGameState] = React.useState(true)
 
   const handleNewGuess = (guess) => {
-    if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
-      alert("all out of guesses…");
+    setGuesses([...guesses, guess]);
+    
+    console.log("guess no.", guesses.length);
+    
+    if (guesses.length == NUM_OF_GUESSES_ALLOWED - 1) {
+      setGameState(false); 
       return;
     }
-
-    setGuesses([...guesses, guess]);
   }
 
   console.info({ answer });
 
   return <>
       <PreviousGuesess guesses={guesses} answer={answer}/>
-      <GuessInput handleNewGuess={handleNewGuess}/>
+      <GuessInput handleNewGuess={handleNewGuess} gameStillActive={gameState}/>
     </>;
 }
 
