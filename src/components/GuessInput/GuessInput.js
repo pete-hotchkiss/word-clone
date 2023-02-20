@@ -1,6 +1,7 @@
 import React from "react";
+import { GameStates } from "../../constants";
 
-function GuessInput({handleNewGuess, gameStillActive}) {
+function GuessInput({handleNewGuess, gameState}) {
 
   const [guess, setGuess] = React.useState('');
 
@@ -14,7 +15,7 @@ function GuessInput({handleNewGuess, gameStillActive}) {
         setGuess("");
       }}
     >
-    game ok: {gameStillActive.toString()}
+    game ok: {gameState}
     <label htmlFor="guess-input">Enter guess:</label>
     <input 
       onChange={(e) => {
@@ -24,7 +25,7 @@ function GuessInput({handleNewGuess, gameStillActive}) {
       pattern="[A-Z]{5}"
       value={guess}
       id="guess-input" type="text"
-      disabled={!gameStillActive} />
+      disabled={gameState != GameStates.running}/>
   </form>;
 }
 
