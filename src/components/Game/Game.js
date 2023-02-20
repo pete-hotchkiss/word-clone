@@ -20,7 +20,6 @@ function Game() {
   const [answer, setAnswer] = React.useState(sample(WORDS))
 
   const init = () => {
-    console.log("restart");
     setIsActive(true);
     setGuesses([]);  
     setAnswer(sample(WORDS));

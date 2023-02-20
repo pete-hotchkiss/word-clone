@@ -8,8 +8,6 @@ function Result({guesses, answer, handleRestart}) {
 
   let result;
 
-  console.log("init", handleRestart);
-
   if (guesses.at(-1) === answer) {
     result = <div className="happy banner">
     <p>
