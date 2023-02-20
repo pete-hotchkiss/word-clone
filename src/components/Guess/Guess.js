@@ -1,9 +1,9 @@
 import React from "react";
 import { range } from "../../utils";
 
-function Guess({guess}) {
+function Guess({value}) {
 
-  const letters = (guess && guess.split('')) ?? ["","","","",""];
+  const letters = (value && value.split('')) ?? Array(5).fill("");
 
   return <p className="guess">
     { letters.map(l => <span className="cell" key={crypto.randomUUID()}>{l}</span>)}

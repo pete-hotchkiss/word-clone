@@ -10,7 +10,7 @@ function PreviousGuesess({guesses}) {
   return <div className="guess-results">
     {
       guessList.map(g => (
-        <Guess guess={guesses[g]} key={crypto.randomUUID()}/>
+        <Guess value={guesses[g]} key={crypto.randomUUID()}/>
       )
     )}
   </div>;
