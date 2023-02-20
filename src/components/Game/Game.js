@@ -6,10 +6,11 @@ import GuessInput from "../GuessInput";
 import PreviousGuesess from '../PreviousGuesess';
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
+
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+
 
 function Game() {
 
@@ -20,11 +21,14 @@ function Game() {
       alert("all out of guesses…");
       return;
     }
+
     setGuesses([...guesses, guess]);
   }
 
+  console.info({ answer });
+
   return <>
-      <PreviousGuesess guesses={guesses}/>
+      <PreviousGuesess guesses={guesses} answer={answer}/>
       <GuessInput handleNewGuess={handleNewGuess}/>
     </>;
 }
