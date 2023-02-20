@@ -1,10 +1,14 @@
 import React from "react";
 
-function Result({guesses, answer}) {
+const RestartButton = ({handler}) => {
+  return <button onClick={() => handler()}>Restart</button>;
+}
+
+function Result({guesses, answer, handleRestart}) {
 
   let result;
 
-  console.log("gusses", guesses);
+  console.log("init", handleRestart);
 
   if (guesses.at(-1) === answer) {
     result = <div className="happy banner">
@@ -12,10 +16,12 @@ function Result({guesses, answer}) {
       <strong>Congratulations!</strong> Got it in
       <strong>{guesses.length} guesses</strong>.
     </p>
+    <RestartButton handler={handleRestart}/>
   </div>;
   } else {
     result = <div className="sad banner">
     <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>
+    <RestartButton handler={handleRestart}/>
   </div>
   }
   
