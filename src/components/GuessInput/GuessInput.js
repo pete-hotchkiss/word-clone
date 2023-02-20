@@ -14,7 +14,7 @@ function GuessInput({handleNewGuess}) {
         setGuess("");
       }}
     >
-    <label for="guess-input">Enter guess:</label>
+    <label htmlFor="guess-input">Enter guess:</label>
     <input 
       onChange={(e) => {
         setGuess(e.target.value.toUpperCase())
