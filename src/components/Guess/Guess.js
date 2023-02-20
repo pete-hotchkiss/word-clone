@@ -2,6 +2,11 @@ import React from "react";
 import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
 
+function Cell({letter, status}) {
+  const className = status ? `cell ${status}` : "cell";
+  return  <span className={className} key={crypto.randomUUID()}>{letter}</span>
+}
+
 
 function Guess({value, answer}) {
 
@@ -10,7 +15,7 @@ function Guess({value, answer}) {
   return <p className="guess">
     { result.map(
       ({letter, status}) => 
-      <span className={`cell ${status}`} key={crypto.randomUUID()}>{letter}</span>
+        <Cell letter={letter} status={status}/>
     )}
   </p>
 }
