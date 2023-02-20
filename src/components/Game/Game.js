@@ -14,10 +14,10 @@ function Game() {
 
   const [guesses, setGuesses] = React.useState([]);
 
-  return <div>
-    <PreviousGuesess guesses={guesses}/>
-    <GuessInput setGuesses={setGuesses} guesses={guesses} />
-    </div>;
+  return <>
+      <PreviousGuesess guesses={guesses}/>
+      <GuessInput setGuesses={setGuesses} guesses={guesses} />
+    </>;
 }
 
 export default Game;

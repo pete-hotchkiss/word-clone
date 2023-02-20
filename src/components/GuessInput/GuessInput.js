@@ -4,7 +4,7 @@ function GuessInput({guesses, setGuesses}) {
 
   const [guess, setGuess] = React.useState('');
 
-  return <form class="guess-input-wrapper"
+  return <form className="guess-input-wrapper"
       onSubmit={(e) => {
         e.preventDefault();
 
