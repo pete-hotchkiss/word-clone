@@ -1,9 +1,13 @@
 import React from "react";
 
 function PreviousGuesess({guesses}) {
+
+
   return <div class="guess-results">
-    <p class="guess">{guesses.length}</p>
-    <p class="guess">GUESS</p>
+    {
+    guesses.map(g => (
+      <p class="guess" key={crypto.randomUUID()}>{g}</p>
+    ))}
   </div>;
 }
 
