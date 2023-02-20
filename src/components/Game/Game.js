@@ -26,9 +26,10 @@ function Game() {
   }
 
   const handleNewGuess = (guess) => {
-    setGuesses([...guesses, guess]);
+    let nextGuesses = [...guesses, guess]
+    setGuesses(nextGuesses);
     
-    if (guesses.length == NUM_OF_GUESSES_ALLOWED - 1 || guess === answer) {
+    if (nextGuesses.length == NUM_OF_GUESSES_ALLOWED || guess === answer) {
       setIsActive(false); 
       return;
     }
