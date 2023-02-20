@@ -4,8 +4,11 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import GuessInput from "../GuessInput";
 import PreviousGuesess from '../PreviousGuesess';
-import Result from "../Result";
-import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+// import Result from "../Result";
+import WonBanner from '../WonBanner/WonBanner';
+import LostBanner
+ from '../LostBanner/LostBanner';
+import { NUM_OF_GUESSES_ALLOWED, GameStates } from "../../constants";
 
 
 // Pick a random word on every pageload.
@@ -16,13 +19,13 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 function Game() {
 
   const [guesses, setGuesses] = React.useState([]);
-  const [isActive, setIsActive] = React.useState(true);
+  const [gameStatus, setGameStatus] = React.useState(GameStates.running);
   const [answer, setAnswer] = React.useState(sample(WORDS))
 
   console.log("answer", answer);
 
   const init = () => {
-    setIsActive(true);
+    setGameStatus(GameStates.running);
     setGuesses([]);  
     setAnswer(sample(WORDS));
   }
@@ -30,19 +33,24 @@ function Game() {
   const handleNewGuess = (guess) => {
     let nextGuesses = [...guesses, guess]
     setGuesses(nextGuesses);
-    
-    if (nextGuesses.length == NUM_OF_GUESSES_ALLOWED || guess === answer) {
-      setIsActive(false); 
+    if (guess === answer) {
+      setGameStatus(GameStates.won);
+      return; 
+    } else if (nextGuesses.length == NUM_OF_GUESSES_ALLOWED) {
+      setGameStatus(GameStates.lost); 
       return;
     }
   }
 
   return <>
-      { !isActive &&
-        <Result totalGuesses={guesses.length} guess={guesses.at(-1)} answer={answer} handleRestart={init}/>
-      } 
+      {gameStatus === GameStates.won && (
+        <WonBanner totalGuesses={guesses.length} handleRestart={init} />
+      )}
+      {gameStatus === GameStates.lost && (
+        <LostBanner answer={answer} handleRestart={init} />
+      )}
       <PreviousGuesess guesses={guesses} answer={answer}/>
-      <GuessInput handleNewGuess={handleNewGuess} gameStillActive={isActive}/>
+      <GuessInput handleNewGuess={handleNewGuess} gameState={gameStatus}/>
     </>;
 }
 
