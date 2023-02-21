@@ -4,17 +4,9 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import GuessInput from "../GuessInput";
 import PreviousGuesess from '../PreviousGuesess';
-// import Result from "../Result";
 import WonBanner from '../WonBanner/WonBanner';
-import LostBanner
- from '../LostBanner/LostBanner';
+import LostBanner from '../LostBanner/LostBanner';
 import { NUM_OF_GUESSES_ALLOWED, GameStates } from "../../constants";
-
-
-// Pick a random word on every pageload.
-// const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-
 
 function Game() {
 
